@@ -19,3 +19,4 @@ What will i say in this guideline:
 
 References: 
 .https://oracle-chokotto.com/
+.http://www.dba-oracle.com/
