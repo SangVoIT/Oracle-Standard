@@ -1,8 +1,27 @@
+1. Overview Of Primary Components
+![alt text](https://nitishanandsrivastava.files.wordpress.com/2015/12/arch.png?w=700)
 
-
+2. Physical storage structure 
 ![alt text](https://docs.oracle.com/cd/E82638_01/cncpt/img/cncpt223.gif)
+The System Global Area (SGA) is a group of shared memory structures, known as SGA components, that contain data and control information for one Oracle Database instance. The SGA is shared by all server and background processes. Examples of data stored in the SGA include cached data blocks and shared SQL areas.
 
+3. Logical Storage Structures. 
+![alt text](https://docs.oracle.com/cd/E11882_01/server.112/e40540/img/cncpt227.gif)
 
-The SYSAUX tablespace provides storage of non-sys-related tables and indexes that traditionally were placed in the SYSTEM tablespace. For example, the tables and indexes that were previously owned by the system user can now be specified for a SYSAUX tablespace.
-
+4. Manage database storage structure 
 ![alt text](https://docs.oracle.com/cd/E16338_01/server.112/b56320/img/admqs003.gif)
+SYSAUX is an auxiliary tablespace to the SYSTEM tablespace, reduces the load on the SYSTEM tablespace and reduces maintenance because there are fewer tablespaces to monitor and maintain, Must have a SYSAUX tablespace.(> Oracle Database 10g)
+SYSTEM is always created at database creation, manage the database, contains the data dictionary, which is the central set of tables and views used as a read-only reference describing a particular database.
+TEMP to store temporary data generated when processing SQL statements. It would, for example, be used for sort work space. Every database should have a temporary tablespace that is assigned to users as their temporary tablespace. In the preconfigured database, the TEMP tablespace is specified as the default temporary tablespace. 
+UNDOTBS1 to store undo information. See "Managing Undo for Your Database" to understand Oracle's use of the undo tablespace. Every database must have an undo tablespace that can be created at database creation.
+USERS to store permanent user objects and data. Like the TEMP tablespace, every database should have a tablespace for permanent user data that is assigned to users. Otherwise, their objects will be created in the SYSTEM tablespace, and this is not good practice. In the preconfigured database, USERS is assigned the default tablespace, and space for all objects created by non-system users comes from this tablespace. For system users, the default permanent tablespace remains SYSTEM.
+
+5. SQL Processing
+![alt text](https://docs.oracle.com/database/121/TGSQL/img/GUID-476CEA3E-17B5-454F-AD82-CF3FC19D81B1-default.gif)
+
+1.1 https://databaseinternalmechanism.com/oracle-database-internals/oracle-process-architecture/
+1.2 https://docs.oracle.com/database/121/ADMQS/GUID-A3319550-AB7A-4429-9A58-4B90E4B3D0F5.htm
+2.1 https://docs.oracle.com/database/121/CNCPT/physical.htm#CNCPT88986x
+3.1 https://docs.oracle.com/cd/E11882_01/server.112/e40540/logical.htm
+4.1 https://docs.oracle.com/cd/E11882_01/server.112/e10897/storage.htm
+5.1 https://docs.oracle.com/database/121/TGSQL/tgsql_sqlproc.htm#TGSQL175
