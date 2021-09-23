@@ -1,0 +1,74 @@
+1. Create Database
+CREATE DATABASE <database name>
+  LOGFILE GROUP 1 ('<path to redo log file for group 1 and member 1>'
+                 ,'<Path to redo log file for group 1 and member 2>', ...) SIZE xx
+          GROUP 2 ('<path to redo log file for group 2 and member 1>'
+                 ,'<Path to redo log file for group 2 and member 2>', ...) SIZE xx
+  DATAFILE'SYSTEM tablespace path to datafile>' SIZE xx
+    [AUTOEXTEND {OFF | ON [NEXT xx]}]
+    [MAXSIZE {UNLIMITED | SIZE [NEXT xx]}]
+    [EXTENT MANAGEMENT LOCAL]
+  SYSAUX DATAFILE'Path to datafile for SYSAUX tablespace>' SIZE xx
+  DEFAULT TEMPORARY TABLESPACE <temporary tablespace name>
+    TEMPFILE'Path to datafile for temporary tablespace>' SIZE xx
+    [AUTOEXTEND {OFF | ON [NEXT xx]}]
+    [MAXSIZE {UNLIMITED | SIZE [NEXT xx]}]
+  UNDO TABLESPACE <UNDO tablespace name>
+    TEMPFILE'Path to datafile for UNDO tablespace>' SIZE xx
+    [AUTOEXTEND {OFF | ON [NEXT xx]}]
+    [MAXSIZE {UNLIMITED | SIZE [NEXT xx]}]
+  [ARCHIVELOG | NOARCHIVELOG]
+  [LOGGING | NOLOGGING]
+  [CHARACTER SET character set]
+; 
+
+Sample:
+--TESTDB
+CREATE DATABASE TESTDB
+  LOGFILE GROUP 1 ('C:\DATAFILE\REDO\REDO01A.log',
+                   'C:\DATAFILE\REDO\REDO01B.log') SIZE 10M
+          GROUP 2 ('C:\DATAFILE\REDO\REDO02A.log',
+                   'C:\DATAFILE\REDO\REDO02B.log') SIZE 10M
+  DATAFILE 'C:\DATAFILE\DATA\SYSTEM01.dbf' SIZE 256M
+  AUTOEXTEND ON NEXT 64M
+  MAXSIZE UNLIMITED
+  SYSAUX DATAFILE 'C:\DATAFILE\DATA\SYSAUX01.dbf' SIZE 256M
+  DEFAULT TEMPORARY TABLESPACE TEMP01
+    TEMPFILE 'C:\DATAFILE\DATA\TEMP01.dbf' SIZE 256M
+  UNDO TABLESPACE UNDO01
+    DATAFILE 'C:\DATAFILE\DATA\UNDO01.dbf' SIZE 256M
+  ARCHIVELOG
+  CHARACTER SET JA16SJISTILDE
+;
+
+
+2. Check DATABASE Informaiton
+-☆ Display the database version.
+SELECT * FROM V $ VERSION;
+
+-☆ Display a list of control files.
+SELECT * FROM V $ CONTROLFILE;
+
+-☆ Display a list of database files.
+SELECT * FROM V $ DBFILE;
+
+-☆ Display a list of log files.
+SELECT * FROM V $ LOGFILE;
+
+-☆ Display the size of SGA.
+SELECT * FROM V $ SGA;
+
+-☆ Display a list of tablespaces.
+SELECT * FROM V $ TABLESPACE;
+
+-☆ Display a list of initialization parameters.
+SELECT NAME, VALUE V $ PARAMETER;
+-(SHOW PARAMETERS is also acceptable)
+
+-☆ Display the list of currently logged in users.
+SELECT USERNAME FROM V $ SESSION WHERE TYPE ='USER'; 
+
+
+Ref: 
+https://oracle-chokotto.com/ora_database.html
+https://oracle-chokotto.com/ora_samplesql1.html
