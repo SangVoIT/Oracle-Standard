@@ -1,0 +1,8 @@
+
+
+![alt text](https://docs.oracle.com/cd/E82638_01/cncpt/img/cncpt223.gif)
+
+
+The SYSAUX tablespace provides storage of non-sys-related tables and indexes that traditionally were placed in the SYSTEM tablespace. For example, the tables and indexes that were previously owned by the system user can now be specified for a SYSAUX tablespace.
+
+![alt text](https://docs.oracle.com/cd/E16338_01/server.112/b56320/img/admqs003.gif)
