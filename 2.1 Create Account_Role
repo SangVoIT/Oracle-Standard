@@ -1,0 +1,50 @@
+1. CREATE ACCOUNT: 
+CREATE USER username
+   [identified by <initial password>]
+   [default tablespace <tablespace name>]
+   [temporary tablespace <temporary tablespace name>]
+   [quota <size> on <tablespace name>]
+   [profile <profile name> | default]
+   [account lock | unlock]
+   [password expire]
+; 
+
+Sample:
+CREATE USER taro
+  identified by taropw
+  default tablespace USER01
+  temporary tablespace temp
+  quota 50M on USER01
+  profile default
+;
+
+Sample:
+CREATE USER taro
+  identified by taropw
+;
+------------------------------------------------------------------------------
+2. CREATE & GRANT ROLE
+CREATE ROLE role name [NOT IDENTIFIED | IDENTIFIED BY Password]; 
+GRANT [Object Privilege Name] ON [Object Name] TO [User Name | PUBLIC] [WITH ADMIN OPTION];
+
+Sample:
+CREATE ROLE select_role;
+GRANT CREATE SESSION, SELECT ANY TABLE TO select_role;
+GRANT select_role TO taro;
+
+------------------------------------------------------------------------------
+AUTHORITY: Object Privilege Name
+ALTER: Permission to change tables and order
+DELETE: Permission to delete table data
+EXECUTE: Execute a procedure or package
+INDEX: Permission to index on a table
+INSERT: Permission to insert data into the table
+REFERENCES: Permission to create referential integrity constraints
+SELECT: Permission to search tables and views
+UPDATE: Permission to update table data
+
+WITH ADMIN OPTION: Ref(3)
+------------------------------------------------------------------------------
+1. https://oracle-chokotto.com/ora_user.html
+2. https://oracle-chokotto.com/ora_role_c.html
+3. https://oracle-chokotto.com/ora_auth.html
