@@ -2,3 +2,20 @@ Oracle what is?
 Oracle Corporation is an American computer technology company, specialising in database software. 
 Oracle is one of the leading suppliers of software for information management, 
 relational database products and more recently cloud products and services.
+
+What will i say in this guideline:
+1. Oracle Stucture
+2. Create account
+3. Standard Oracle SQL
+  Select, Insert, Update, Delete
+4. Addtion in Standard Oracle SQL
+  Sort, Limit, Dense_Rank
+5. Index, Implementation plan
+6. Store Procedure
+7. View
+8. Database Link
+9. Backup and Restore ORCL Database
+10. Tracking Logs
+
+References: 
+.https://oracle-chokotto.com/
